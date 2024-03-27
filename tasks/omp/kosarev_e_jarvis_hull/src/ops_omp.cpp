@@ -69,7 +69,6 @@ Point findFirstPoint_omp(const std::vector<Point>& points) {
   Point first = points[0];
 #pragma omp parallel for
   for (size_t i = 1; i < points.size(); i++) {
-#pragma omp critical
     {
       if (points[i].y < first.y || (points[i].y == first.y && points[i].x < first.x)) {
         first = points[i];
@@ -79,44 +78,75 @@ Point findFirstPoint_omp(const std::vector<Point>& points) {
   return first;
 }
 
-std::stack<Point> convexHull_omp(std::vector<Point>& points) {
-  std::stack<Point> hull;
+std::vector<Point> convexHull_omp(std::vector<Point>& points) {
   if (points.size() < 3) {
-    return hull;
+    return points;
   }
 
   Point p0 = findFirstPoint_omp(points);
 
   std::sort(points.begin(), points.end(), [p0](const Point& p1, const Point& p2) { return compare(p1, p2, p0); });
 
-  hull.push(points[0]);
-  hull.push(points[1]);
+  std::vector<Point> hull(points.size());
+  hull[0] = points[0];
+  hull[1] = points[1];
+
+  size_t hull_size = 2;
 
 #pragma omp parallel for
   for (size_t i = 2; i < points.size(); i++) {
-    while (hull.size() > 1) {
-      Point p2 = hull.top();
-      hull.pop();
-      Point p1 = hull.top();
-      hull.pop();
-      if (orientation(p1, p2, points[i]) == 2) {
-#pragma omp critical
-        {
-          hull.push(p1);
-          hull.push(p2);
-        }
-        break;
-      } else {
-#pragma omp critical
-        { hull.push(p1); }
-      }
+    size_t k = hull_size;
+    while (k > 1 && orientation(hull[k - 2], hull[k - 1], points[i]) != 2) {
+      --k;
     }
-#pragma omp critical
-    { hull.push(points[i]); }
+#pragma omp atomic write
+    hull_size = k;
+    hull[hull_size++] = points[i];
   }
 
+  hull.resize(hull_size);
   return hull;
 }
+
+
+// std::stack<Point> convexHull_omp(std::vector<Point>& points) {
+//   std::stack<Point> hull;
+//   if (points.size() < 3) {
+//     return hull;
+//   }
+
+//   Point p0 = findFirstPoint_omp(points);
+
+//   std::sort(points.begin(), points.end(), [p0](const Point& p1, const Point& p2) { return compare(p1, p2, p0); });
+
+//   hull.push(points[0]);
+//   hull.push(points[1]);
+
+// #pragma omp parallel for
+//   for (size_t i = 2; i < points.size(); i++) {
+//     while (hull.size() > 1) {
+//       Point p2 = hull.top();
+//       hull.pop();
+//       Point p1 = hull.top();
+//       hull.pop();
+//       if (orientation(p1, p2, points[i]) == 2) {
+// #pragma omp critical
+//         {
+//           hull.push(p1);
+//           hull.push(p2);
+//         }
+//         break;
+//       } else {
+// #pragma omp critical
+//         { hull.push(p1); }
+//       }
+//     }
+// #pragma omp critical
+//     { hull.push(points[i]); }
+//   }
+
+//   return hull;
+// }
 
 bool TestTaskSequentialKosarevJarvisHull::pre_processing() {
   internal_order_test();
