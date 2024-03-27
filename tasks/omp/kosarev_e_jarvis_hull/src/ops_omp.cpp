@@ -40,9 +40,7 @@ std::stack<Point> convexHull(std::vector<Point>& points) {
 
   Point p0 = findFirstPoint(points);
 
-  std::sort(
-      points.begin(), points.end(),
-      [p0](const Point& p1, const Point& p2) { return compare(p1, p2, p0); });
+  std::sort(points.begin(), points.end(), [p0](const Point& p1, const Point& p2) { return compare(p1, p2, p0); });
 
   hull.push(points[0]);
   hull.push(points[1]);
@@ -69,9 +67,9 @@ std::stack<Point> convexHull(std::vector<Point>& points) {
 
 Point findFirstPoint_omp(const std::vector<Point>& points) {
   Point first = points[0];
-  #pragma omp parallel for
+#pragma omp parallel for
   for (size_t i = 1; i < points.size(); i++) {
-    #pragma omp critical
+#pragma omp critical
     {
       if (points[i].y < first.y || (points[i].y == first.y && points[i].x < first.x)) {
         first = points[i];
@@ -89,14 +87,12 @@ std::stack<Point> convexHull_omp(std::vector<Point>& points) {
 
   Point p0 = findFirstPoint_omp(points);
 
-  std::sort(
-      points.begin(), points.end(),
-      [p0](const Point& p1, const Point& p2) { return compare(p1, p2, p0); });
+  std::sort(points.begin(), points.end(), [p0](const Point& p1, const Point& p2) { return compare(p1, p2, p0); });
 
   hull.push(points[0]);
   hull.push(points[1]);
 
-  #pragma omp parallel for
+#pragma omp parallel for
   for (size_t i = 2; i < points.size(); i++) {
     while (hull.size() > 1) {
       Point p2 = hull.top();
@@ -104,23 +100,19 @@ std::stack<Point> convexHull_omp(std::vector<Point>& points) {
       Point p1 = hull.top();
       hull.pop();
       if (orientation(p1, p2, points[i]) == 2) {
-        #pragma omp critical
+#pragma omp critical
         {
           hull.push(p1);
           hull.push(p2);
         }
         break;
       } else {
-        #pragma omp critical
-        {
-          hull.push(p1);
-        }
+#pragma omp critical
+        { hull.push(p1); }
       }
     }
-    #pragma omp critical
-    {
-      hull.push(points[i]);
-    }
+#pragma omp critical
+    { hull.push(points[i]); }
   }
 
   return hull;
@@ -159,11 +151,9 @@ bool TestTaskSequentialKosarevJarvisHull::post_processing() {
     pointsHull.pop();
   }
 
-  std::copy(tempVec.begin(), tempVec.end(),
-            reinterpret_cast<Point*>(taskData->outputs[0]));
+  std::copy(tempVec.begin(), tempVec.end(), reinterpret_cast<Point*>(taskData->outputs[0]));
   return true;
 }
-
 
 bool TestOMPTaskParallelKosarevJarvisHull::pre_processing() {
   internal_order_test();
@@ -198,7 +188,6 @@ bool TestOMPTaskParallelKosarevJarvisHull::post_processing() {
     pointsHull.pop();
   }
 
-  std::copy(tempVec.begin(), tempVec.end(),
-            reinterpret_cast<Point*>(taskData->outputs[0]));
+  std::copy(tempVec.begin(), tempVec.end(), reinterpret_cast<Point*>(taskData->outputs[0]));
   return true;
 }

@@ -1,13 +1,14 @@
 // Copyright 2024 Kosarev Egor
 #include <gtest/gtest.h>
 #include <omp.h>
+
 #include <vector>
 
 #include "core/perf/include/perf.hpp"
 #include "omp/kosarev_e_jarvis_hull/include/ops_omp.hpp"
 
 TEST(kosarev_e_jarvis_hull_omp, test_pipeline_run) {
-  std::vector<Point> points = { {0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3} };
+  std::vector<Point> points = {{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}};
   std::vector<Point> hull = {{0, 3}, {4, 4}, {3, 1}, {0, 0}};
   std::vector<Point> resHull_par(points.size());
 
@@ -39,7 +40,7 @@ TEST(kosarev_e_jarvis_hull_omp, test_pipeline_run) {
 }
 
 TEST(kosarev_e_jarvis_hull_omp, test_task_run) {
-  std::vector<Point> points = { {0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3} };
+  std::vector<Point> points = {{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}};
   std::vector<Point> hull = {{0, 3}, {4, 4}, {3, 1}, {0, 0}};
   std::vector<Point> resHull_par(points.size());
 
