@@ -170,7 +170,7 @@ bool TestOMPTaskParallelKosarevJarvisHull::pre_processing() {
 bool TestOMPTaskParallelKosarevJarvisHull::validation() {
   internal_order_test();
   // Check count elements of output
-  return true;
+  return taskData->inputs_count[0] >= taskData->outputs_count[0];
 }
 
 bool TestOMPTaskParallelKosarevJarvisHull::run() {
