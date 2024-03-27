@@ -4,8 +4,8 @@
 #include <vector>
 
 #include "omp/kosarev_e_jarvis_hull/include/ops_omp.hpp"
-TEST(Kosarev_e_jarvis_omp, Test_1) {
-  std::vector<Point> points = { {0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3} };
+TEST(Kosarev_e_jarvis_omp, Test_hull_one) {
+  std::vector<Point> points = {{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}};
   std::vector<Point> resHull_seq(points.size());
 
   // Create TaskData
@@ -44,8 +44,9 @@ TEST(Kosarev_e_jarvis_omp, Test_1) {
   }
 }
 
-TEST(Kosarev_e_jarvis_omp, Test_2) {
-  std::vector<Point> points = { {2, 5}, {7, 3}, {1, 1}, {-1, 4}, {-5, 4}, {-4, 1}, {-1, -2}, {2, -3}, {3, -1}, {2, 2}, {1, 5}, {-4, 5}, {-1, 0}};
+TEST(Kosarev_e_jarvis_omp, Test_hull_two) {
+  std::vector<Point> points = {{2, 5},  {7, 3},  {1, 1}, {-1, 4}, {-5, 4}, {-4, 1}, {-1, -2},
+                               {2, -3}, {3, -1}, {2, 2}, {1, 5},  {-4, 5}, {-1, 0}};
   std::vector<Point> resHull_seq(points.size());
 
   // Create TaskData
@@ -84,7 +85,7 @@ TEST(Kosarev_e_jarvis_omp, Test_2) {
   }
 }
 
-TEST(Kosarev_e_jarvis_omp, Test_3) {
+TEST(Kosarev_e_jarvis_omp, Test_hull_three) {
   std::vector<Point> points = {{2, 5}, {7, 3}, {1, 1}};
   std::vector<Point> resHull_seq(points.size());
 
@@ -124,7 +125,7 @@ TEST(Kosarev_e_jarvis_omp, Test_3) {
   }
 }
 
-TEST(Kosarev_e_jarvis_omp, Test_4) {
+TEST(Kosarev_e_jarvis_omp, Test_hull_no) {
   std::vector<Point> points = {};
   std::vector<Point> resHull_seq(points.size());
   // Create TaskData
@@ -163,8 +164,8 @@ TEST(Kosarev_e_jarvis_omp, Test_4) {
   }
 }
 
-TEST(Kosarev_e_jarvis_omp, Test_5) {
-  std::vector<Point> points = { {1, 4},{1, 5},{1, 6},{1, 2}, {1, 3}, {2, 5}, {3,4}, {0,5}, {1,7}};
+TEST(Kosarev_e_jarvis_omp, Test_hull_yes) {
+  std::vector<Point> points = {{1, 4}, {1, 5}, {1, 6}, {1, 2}, {1, 3}, {2, 5}, {3, 4}, {0, 5}, {1, 7}};
   std::vector<Point> resHull_seq(points.size());
 
   // Create TaskData
@@ -202,29 +203,3 @@ TEST(Kosarev_e_jarvis_omp, Test_5) {
     ASSERT_EQ(resHull_par[i], resHull_seq[i]);
   }
 }
-
-
-
-// TEST(Kosarev_e_jarvis_seq, Test_hull_yes_hull) {
-//   std::vector<Point> points = { {1, 4},{1, 5},{1, 6},{1, 2}, {1, 3}, {2, 5}, {3,4}, {0,5}, {1,7}};
-//   std::vector<Point> hull = {{0, 5}, {1, 7}, {3, 4}, {1, 2}};
-//   std::vector<Point> resHull(hull.size());
-
-//   // Create TaskData
-//   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-//   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
-//   taskDataSeq->inputs_count.emplace_back(points.size());
-//   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(resHull.data()));
-//   taskDataSeq->outputs_count.emplace_back(resHull.size());
-
-//   // Create Task
-//   TestTaskSequentialKosarevJarvisHull testTaskSequential(taskDataSeq);
-//   ASSERT_EQ(testTaskSequential.validation(), true);
-//   testTaskSequential.pre_processing();
-//   testTaskSequential.run();
-//   testTaskSequential.post_processing();
-
-//   for (size_t i = 0; i < hull.size(); ++i) {
-//     ASSERT_EQ(resHull[i], hull[i]);
-//   }
-// }

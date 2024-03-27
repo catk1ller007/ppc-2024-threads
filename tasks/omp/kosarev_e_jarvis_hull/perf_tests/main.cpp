@@ -51,7 +51,6 @@ TEST(kosarev_e_jarvis_hull_omp, test_task_run) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(resHull_par.data()));
   taskDataSeq->outputs_count.emplace_back(resHull_par.size());
 
-
   // Create Task
   auto testTaskOMP = std::make_shared<TestOMPTaskParallelKosarevJarvisHull>(taskDataSeq);
 
