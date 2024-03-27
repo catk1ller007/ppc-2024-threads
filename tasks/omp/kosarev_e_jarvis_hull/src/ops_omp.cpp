@@ -108,46 +108,6 @@ std::vector<Point> convexHull_omp(std::vector<Point>& points) {
   return hull;
 }
 
-
-// std::stack<Point> convexHull_omp(std::vector<Point>& points) {
-//   std::stack<Point> hull;
-//   if (points.size() < 3) {
-//     return hull;
-//   }
-
-//   Point p0 = findFirstPoint_omp(points);
-
-//   std::sort(points.begin(), points.end(), [p0](const Point& p1, const Point& p2) { return compare(p1, p2, p0); });
-
-//   hull.push(points[0]);
-//   hull.push(points[1]);
-
-// #pragma omp parallel for
-//   for (size_t i = 2; i < points.size(); i++) {
-//     while (hull.size() > 1) {
-//       Point p2 = hull.top();
-//       hull.pop();
-//       Point p1 = hull.top();
-//       hull.pop();
-//       if (orientation(p1, p2, points[i]) == 2) {
-// #pragma omp critical
-//         {
-//           hull.push(p1);
-//           hull.push(p2);
-//         }
-//         break;
-//       } else {
-// #pragma omp critical
-//         { hull.push(p1); }
-//       }
-//     }
-// #pragma omp critical
-//     { hull.push(points[i]); }
-//   }
-
-//   return hull;
-// }
-
 bool TestTaskSequentialKosarevJarvisHull::pre_processing() {
   internal_order_test();
   // Init value for input and output
