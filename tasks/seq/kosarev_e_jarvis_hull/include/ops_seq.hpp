@@ -12,15 +12,12 @@
 struct Point {
   int x, y;
 
-  bool operator==(const Point& other) const {
-    return x == other.x && y == other.y;
-  }
+  bool operator==(const Point& other) const { return x == other.x && y == other.y; }
 };
 
 class TestTaskSequentialKosarevJarvisHull : public ppc::core::Task {
  public:
-  explicit TestTaskSequentialKosarevJarvisHull(
-      std::shared_ptr<ppc::core::TaskData> taskData_)
+  explicit TestTaskSequentialKosarevJarvisHull(std::shared_ptr<ppc::core::TaskData> taskData_)
       : Task(std::move(taskData_)) {}
   bool pre_processing() override;
   bool validation() override;

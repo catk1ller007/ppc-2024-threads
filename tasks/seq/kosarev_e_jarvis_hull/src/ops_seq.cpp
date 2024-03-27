@@ -39,10 +39,7 @@ std::stack<Point> convexHull(std::vector<Point>& points) {
 
   Point p0 = findFirstPoint(points);
 
-  std::sort(
-      points.begin(), points.end(),
-      [p0](const Point& p1, const Point& p2) { return compare(p1, p2, p0); });
-
+  std::sort(points.begin(), points.end(), [p0](const Point& p1, const Point& p2) { return compare(p1, p2, p0); });
   hull.push(points[0]);
   hull.push(points[1]);
 
@@ -99,7 +96,6 @@ bool TestTaskSequentialKosarevJarvisHull::post_processing() {
     pointsHull.pop();
   }
 
-  std::copy(tempVec.begin(), tempVec.end(),
-            reinterpret_cast<Point*>(taskData->outputs[0]));
+  std::copy(tempVec.begin(), tempVec.end(), reinterpret_cast<Point*>(taskData->outputs[0]));
   return true;
 }

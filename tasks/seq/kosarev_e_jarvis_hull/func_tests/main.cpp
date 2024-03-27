@@ -6,7 +6,7 @@
 #include "seq/kosarev_e_jarvis_hull/include/ops_seq.hpp"
 
 TEST(Kosarev_e_jarvis_seq, Test_hull_one) {
-  std::vector<Point> points = { {0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3} };
+  std::vector<Point> points = {{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}};
   std::vector<Point> hull = {{0, 3}, {4, 4}, {3, 1}, {0, 0}};
   std::vector<Point> resHull(hull.size());
 
@@ -30,8 +30,11 @@ TEST(Kosarev_e_jarvis_seq, Test_hull_one) {
 }
 
 TEST(Kosarev_e_jarvis_seq, Test_hull_two) {
-  std::vector<Point> points = { {2, 5}, {7, 3}, {1, 1}, {-1, 4}, {-5, 4}, {-4, 1}, {-1, -2}, {2, -3}, {3, -1}, {2, 2}, {1, 5}, {-4, 5}, {-1, 0}};
-  std::vector<Point> hull = {{-1, -2}, {-4, 1}, {-5, 4}, {-4, 5}, {2, 5}, {7, 3}, {2, -3}, };
+  std::vector<Point> points = {{2, 5},  {7, 3},  {1, 1}, {-1, 4}, {-5, 4}, {-4, 1}, {-1, -2},
+                               {2, -3}, {3, -1}, {2, 2}, {1, 5},  {-4, 5}, {-1, 0}};
+  std::vector<Point> hull = {
+      {-1, -2}, {-4, 1}, {-5, 4}, {-4, 5}, {2, 5}, {7, 3}, {2, -3},
+  };
   std::vector<Point> resHull(hull.size());
 
   // Create TaskData
@@ -102,7 +105,7 @@ TEST(Kosarev_e_jarvis_seq, Test_hull_no_hull) {
 }
 
 TEST(Kosarev_e_jarvis_seq, Test_hull_yes_hull) {
-  std::vector<Point> points = { {1, 4},{1, 5},{1, 6},{1, 2}, {1, 3}, {2, 5}, {3,4}, {0,5}, {1,7}};
+  std::vector<Point> points = {{1, 4}, {1, 5}, {1, 6}, {1, 2}, {1, 3}, {2, 5}, {3, 4}, {0, 5}, {1, 7}};
   std::vector<Point> hull = {{0, 5}, {1, 7}, {3, 4}, {1, 2}};
   std::vector<Point> resHull(hull.size());
 
