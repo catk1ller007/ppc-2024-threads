@@ -5,21 +5,20 @@
 
 #include <algorithm>
 #include <cmath>
-#include <stack>
 #include <thread>
 #include <vector>
 
 using namespace std::chrono_literals;
 
-int orientation(Point p, Point q, Point r) {
+int orientation(const Point& p, const Point& q, const Point& r) {
   int val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
   if (val == 0) return 0;    // collinear
   return (val > 0) ? 1 : 2;  // clock or counterclock wise
 }
 
-double distance(Point p1, Point p2) { return std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y)); }
+double distance(const Point& p1, const Point& p2) { return std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y)); }
 
-std::vector<Point> JarvisAlgo(std::vector<Point>& arrPoints) {
+std::vector<Point> JarvisAlgo(const std::vector<Point>& arrPoints) {
   if (arrPoints.size() < 3) return arrPoints;
 
   auto startPoint = *std::min_element(arrPoints.begin(), arrPoints.end(), [](const Point& p, const Point& q) {
@@ -49,7 +48,7 @@ std::vector<Point> JarvisAlgo(std::vector<Point>& arrPoints) {
   return convexHull;
 }
 
-std::vector<Point> JarvisAlgo_omp(std::vector<Point> arrPoints, int threadsNom) {
+std::vector<Point> JarvisAlgo_omp(const std::vector<Point>& arrPoints, int threadsNom) {
   std::vector<Point> res;
   omp_set_num_threads(threadsNom);
 

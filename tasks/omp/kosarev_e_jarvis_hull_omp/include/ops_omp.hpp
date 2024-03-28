@@ -3,7 +3,6 @@
 
 #include <algorithm>
 #include <iostream>
-#include <stack>
 #include <string>
 #include <vector>
 
@@ -43,8 +42,10 @@ class TestOMPTaskParallelKosarevJarvisHull : public ppc::core::Task {
   std::vector<Point> pointsHull;
 };
 
-int orientation(Point p, Point q, Point r);
+int orientation(const Point& p, const Point& q, const Point& r);
 
-double distance(Point p1, Point p2);
+double distance(const Point& p1, const Point& p2);
 
-std::vector<Point> JarvisAlgo(std::vector<Point>& arrPoints);
+std::vector<Point> JarvisAlgo(const std::vector<Point>& arrPoints);
+
+std::vector<Point> JarvisAlgo_omp(const std::vector<Point>& arrPoints, int threadsNom);
