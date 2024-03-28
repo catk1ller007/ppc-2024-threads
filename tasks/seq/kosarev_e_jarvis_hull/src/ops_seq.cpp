@@ -1,8 +1,8 @@
 // Copyright 2024 Kosarev Egor
 #include "seq/kosarev_e_jarvis_hull/include/ops_seq.hpp"
 
-#include <cmath>
 #include <algorithm>
+#include <cmath>
 #include <stack>
 #include <thread>
 #include <vector>
@@ -36,7 +36,7 @@ std::vector<Point> JarvisAlgo(std::vector<Point>& arrPoints) {
 
   std::vector<Point> convexHull;
   convexHull.push_back(startPoint);
-    
+
   Point prevPoint = startPoint;
 
   while (true) {
