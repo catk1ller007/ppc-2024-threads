@@ -46,7 +46,8 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_one) {
 }
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_two) {
-  std::vector<Point> points = {{2, 5}, {7, 3}, {1, 1}, {-1, 4}, {-5, 4}, {-4, 1}, {-1, -2}, {2, -3}, {3, -1}, {2, 2}, {1, 5}, {-4, 5}, {-1, 0}};
+  std::vector<Point> points = {{2, 5},  {7, 3},  {1, 1}, {-1, 4}, {-5, 4}, {-4, 1}, {-1, -2},
+                               {2, -3}, {3, -1}, {2, 2}, {1, 5},  {-4, 5}, {-1, 0}};
   std::vector<Point> resHull_seq(points.size());
 
   // Create TaskData

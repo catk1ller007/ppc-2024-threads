@@ -1,12 +1,13 @@
 // Copyright 2024 Kosarev Egor
 #include "omp/kosarev_e_jarvis_hull_omp/include/ops_omp.hpp"
 
+#include <omp.h>
+
 #include <algorithm>
 #include <cmath>
 #include <stack>
 #include <thread>
 #include <vector>
-#include <omp.h>
 
 using namespace std::chrono_literals;
 
@@ -49,8 +50,8 @@ std::vector<Point> JarvisAlgo(std::vector<Point>& arrPoints) {
 }
 
 std::vector<Point> JarvisAlgo_omp(std::vector<Point> arrPoints, int threadsNom) {
-    std::vector<Point> res;
-    omp_set_num_threads(threadsNom);
+  std::vector<Point> res;
+  omp_set_num_threads(threadsNom);
     
 #pragma omp parallel
   {
@@ -59,22 +60,20 @@ std::vector<Point> JarvisAlgo_omp(std::vector<Point> arrPoints, int threadsNom) 
     int delta = arrPoints.size() / threadsNom;
     int remains = arrPoints.size() % threadsNom;
     std::vector<Point> localVector;
-        
+
     if (threadNom == 0) {
       localSize = remains + delta;
       localVector = std::vector<Point>(arrPoints.begin(), arrPoints.begin() + localSize);
     } else {
-        localSize = arrPoints.size() / threadsNom;
-        localVector = std::vector<Point>(arrPoints.begin() + (localSize * threadNom) + remains,
-                                             arrPoints.begin() + (localSize * (threadNom + 1)) + remains);
+      localSize = arrPoints.size() / threadsNom;
+      localVector = std::vector<Point>(arrPoints.begin() + (localSize * threadNom) + remains,
+                                       arrPoints.begin() + (localSize * (threadNom + 1)) + remains);
     }
         
-        std::vector<Point> localRes = JarvisAlgo(localVector);
+    std::vector<Point> localRes = JarvisAlgo(localVector);
         
 #pragma omp critical
-    {
-      res.insert(res.end(), localRes.begin(), localRes.end());
-    }
+    { res.insert(res.end(), localRes.begin(), localRes.end()); }
   }
     
   return JarvisAlgo(res);
