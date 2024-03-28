@@ -109,7 +109,6 @@ bool TestTaskSequentialKosarevJarvisHull::post_processing() {
   return true;
 }
 
-
 bool TestOMPTaskParallelKosarevJarvisHull::pre_processing() {
   internal_order_test();
   // Init value for input and output
