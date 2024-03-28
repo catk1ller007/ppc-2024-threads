@@ -38,7 +38,6 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_one) {
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();
   testOmpTaskParallel.post_processing();
-
   for (size_t i = 0; i < resHull_par.size(); ++i) {
     ASSERT_EQ(resHull_par[i], resHull_seq[i]);
   }

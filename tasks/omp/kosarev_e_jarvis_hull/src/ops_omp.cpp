@@ -5,6 +5,7 @@
 #include <stack>
 #include <thread>
 #include <vector>
+#include <random>
 
 using namespace std::chrono_literals;
 
@@ -99,7 +100,6 @@ std::vector<Point> convexHull_omp(std::vector<Point>& points) {
     while (k > 1 && orientation(hull[k - 2], hull[k - 1], points[i]) != 2) {
       --k;
     }
-#pragma omp atomic write
     hull_size = k;
     hull[hull_size++] = points[i];
   }
@@ -129,7 +129,7 @@ bool TestTaskSequentialKosarevJarvisHull::validation() {
 bool TestTaskSequentialKosarevJarvisHull::run() {
   internal_order_test();
   pointsHull = convexHull(points);
-  std::this_thread::sleep_for(30ms);
+  std::this_thread::sleep_for(20ms);
   return true;
 }
 bool TestTaskSequentialKosarevJarvisHull::post_processing() {
