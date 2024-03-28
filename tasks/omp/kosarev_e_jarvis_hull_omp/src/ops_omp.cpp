@@ -52,7 +52,7 @@ std::vector<Point> JarvisAlgo(std::vector<Point>& arrPoints) {
 std::vector<Point> JarvisAlgo_omp(std::vector<Point> arrPoints, int threadsNom) {
   std::vector<Point> res;
   omp_set_num_threads(threadsNom);
-    
+
 #pragma omp parallel
   {
     int threadNom = omp_get_thread_num();
@@ -69,13 +69,13 @@ std::vector<Point> JarvisAlgo_omp(std::vector<Point> arrPoints, int threadsNom) 
       localVector = std::vector<Point>(arrPoints.begin() + (localSize * threadNom) + remains,
                                        arrPoints.begin() + (localSize * (threadNom + 1)) + remains);
     }
-        
+
     std::vector<Point> localRes = JarvisAlgo(localVector);
-        
+
 #pragma omp critical
     { res.insert(res.end(), localRes.begin(), localRes.end()); }
   }
-    
+
   return JarvisAlgo(res);
 }
 
