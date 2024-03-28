@@ -16,7 +16,9 @@ int orientation(const Point& p, const Point& q, const Point& r) {
   return (val > 0) ? 1 : 2;  // clock or counterclock wise
 }
 
-double distance(const Point& p1, const Point& p2) { return std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y)); }
+double distance(const Point& p1, const Point& p2) {
+  return std::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+}
 
 std::vector<Point> JarvisAlgo(const std::vector<Point>& arrPoints) {
   if (arrPoints.size() < 3) return arrPoints;
