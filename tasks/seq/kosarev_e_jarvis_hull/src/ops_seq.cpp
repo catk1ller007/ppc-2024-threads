@@ -33,7 +33,7 @@ std::vector<Point> JarvisAlgo(const std::vector<Point>& arrPoints) {
 
   while (true) {
     Point nextPoint = arrPoints[0];
-    for (auto& point : arrPoints) {
+    for (const auto& point : arrPoints) {
       if (point == prevPoint) continue;
       int orient = orientation(prevPoint, nextPoint, point);
       if (orient == 2 || (orient == 0 && distance(prevPoint, point) > distance(prevPoint, nextPoint))) {
@@ -55,7 +55,7 @@ bool TestTaskSequentialKosarevJarvisHull::pre_processing() {
   points = std::vector<Point>(taskData->inputs_count[0]);
 
   auto* tmp_ptr_A = reinterpret_cast<Point*>(taskData->inputs[0]);
-  for (unsigned i = 0; i < taskData->inputs_count[0]; i++) {
+  for (size_t i = 0; i < taskData->inputs_count[0]; i++) {
     points[i] = tmp_ptr_A[i];
   }
   return true;
