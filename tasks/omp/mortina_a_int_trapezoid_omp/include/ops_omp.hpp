@@ -41,7 +41,6 @@ class TestOMPTaskParallelMortinaIntegralTrapezoid : public ppc::core::Task {
   std::function<double(double, double)> fun;
 };
 
-
 double trapezoidal_integral(double a1, double b1, double a2, double b2, int n1, int n2,
                             std::function<double(double, double)> fun);
 
