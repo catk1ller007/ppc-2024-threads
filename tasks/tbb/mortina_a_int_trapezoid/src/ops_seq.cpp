@@ -37,7 +37,6 @@ double trapezoidal_integral(double a1, double b1, double a2, double b2, int n1, 
 
 double trapezoidal_integral_tbb(double a1, double b1, double a2, double b2, int n1, int n2,
                                 std::function<double(double, double)> f) {
-
   double h1 = (b1 - a1) / n1;
   double h2 = (b2 - a2) / n2;
   double result = 0;
@@ -67,32 +66,6 @@ double trapezoidal_integral_tbb(double a1, double b1, double a2, double b2, int 
 
   return result;
 }
-
-// double trapezoidal_integral_tbb(double a1, double b1, double a2, double b2, int n1, int n2,
-//                             std::function<double(double, double)> f) {
-//   double h1 = (b1 - a1) / n1;
-//   double h2 = (b2 - a2) / n2;
-//   double integral = 0.0;
-
-//   tbb::parallel_for(0, n1, [&](int i) {
-//     double x0 = a1 + i * h1;
-//     double x1 = a1 + (i + 1) * h1;
-
-//     for (int j = 0; j < n2; ++j) {
-//       double y0 = a2 + j * h2;
-//       double y1 = a2 + (j + 1) * h2;
-
-//       double f00 = f(x0, y0);
-//       double f01 = f(x0, y1);
-//       double f10 = f(x1, y0);
-//       double f11 = f(x1, y1);
-
-//       integral += ((f00 + f01 + f10 + f11) / 4.0) * (x1 - x0) * (y1 - y0);
-//     }
-//   });
-
-//   return integral;
-// }
 
 bool TestTBBTaskSequentialMortinaIntegralTrapezoid::pre_processing() {
   internal_order_test();
