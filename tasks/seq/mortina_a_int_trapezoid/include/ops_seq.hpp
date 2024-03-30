@@ -1,15 +1,18 @@
 // Copyright 2024 Mortina Nastya
 #pragma once
 
+#include <functional>
 #include <string>
 #include <vector>
-#include <functional>
 
 #include "core/task/include/task.hpp"
 
 class TestTaskSequentialMortinaIntegralTrapezoid : public ppc::core::Task {
  public:
-  explicit TestTaskSequentialMortinaIntegralTrapezoid(std::shared_ptr<ppc::core::TaskData> taskData_, std::function<double(double, double)>fun_) : Task(std::move(taskData_)), fun(std::move(fun_))  {}
+  explicit TestTaskSequentialMortinaIntegralTrapezoid(
+      std::shared_ptr<ppc::core::TaskData> taskData_,
+      std::function<double(double, double)> fun_)
+      : Task(std::move(taskData_)), fun(std::move(fun_)) {}
   bool pre_processing() override;
   bool validation() override;
   bool run() override;
@@ -22,4 +25,5 @@ class TestTaskSequentialMortinaIntegralTrapezoid : public ppc::core::Task {
   std::function<double(double, double)> fun;
 };
 
-double trapezoidal_integral(double a1, double b1, double a2, double b2, int n1, int n2, std::function<double(double, double)> fun);
+double trapezoidal_integral(double a1, double b1, double a2, double b2, int n1,
+                            int n2, std::function<double(double, double)> fun);
