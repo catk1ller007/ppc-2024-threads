@@ -8,8 +8,8 @@
 
 using namespace std::chrono_literals;
 
-double trapezoidal_integral(double a1, double b1, double a2, double b2, int n1,
-                            int n2, std::function<double(double, double)> f) {
+double trapezoidal_integral(double a1, double b1, double a2, double b2, int n1, int n2,
+                            std::function<double(double, double)> f) {
   double h1 = (b1 - a1) / n1;
   double h2 = (b2 - a2) / n2;
   double integral = 0.0;
@@ -49,8 +49,7 @@ bool TestTaskSequentialMortinaIntegralTrapezoid::pre_processing() {
 bool TestTaskSequentialMortinaIntegralTrapezoid::validation() {
   internal_order_test();
   // Check count elements of output
-  return taskData->inputs_count[0] == 4 && taskData->inputs_count[1] == 2 &&
-         taskData->outputs_count[0] == 1;
+  return taskData->inputs_count[0] == 4 && taskData->inputs_count[1] == 2 && taskData->outputs_count[0] == 1;
 }
 
 bool TestTaskSequentialMortinaIntegralTrapezoid::run() {
