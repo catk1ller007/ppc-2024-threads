@@ -4,7 +4,7 @@
 #include <cmath>
 #include <vector>
 
-#include "tbb/mortina_a_int_trapezoid/include/ops_tbb.hpp"
+#include "tbb/mortina_a_int_trapezoid_tbb/include/ops_tbb.hpp"
 
 TEST(Parallel_mortina_a_int_trapizoid_TBB, Test_1) {
   double a1 = 0.0;

@@ -5,7 +5,7 @@
 #include <cmath>
 
 #include "core/perf/include/perf.hpp"
-#include "tbb/mortina_a_int_trapezoid/include/ops_tbb.hpp"
+#include "tbb/mortina_a_int_trapezoid_tbb/include/ops_tbb.hpp"
 
 TEST(tbb_mortina_a_int_trapezoid, test_pipeline_run) {
   double a1 = 0.0;

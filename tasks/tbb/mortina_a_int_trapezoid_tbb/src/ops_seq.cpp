@@ -6,7 +6,7 @@
 #include <iostream>
 #include <thread>
 
-#include "tbb/mortina_a_int_trapezoid/include/ops_tbb.hpp"
+#include "tbb/mortina_a_int_trapezoid_tbb/include/ops_tbb.hpp"
 
 using namespace std::chrono_literals;
 
