@@ -1,6 +1,7 @@
 // Copyright 2024 Mortina Nastya
 #include <gtest/gtest.h>
 #include <tbb/tbb.h>
+
 #include <cmath>
 
 #include "core/perf/include/perf.hpp"
