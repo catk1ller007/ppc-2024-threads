@@ -62,7 +62,7 @@ TEST(Parallel_mortina_a_int_trapizoid, Test_1) {
   ASSERT_NEAR(par_res[0], out[0], 0.0001);
 }
 
-TEST(Sequential_motrina_a_int_trapezoid, Test_2) {
+TEST(Parallel_mortina_a_int_trapizoid, Test_2) {
   double a1 = 0.0;
   double b1 = 3.14159265358979323846;
   double a2 = 0.0;
@@ -118,7 +118,7 @@ TEST(Sequential_motrina_a_int_trapezoid, Test_2) {
   ASSERT_NEAR(par_res[0], out[0], 0.0001);
 }
 
-TEST(Sequential_motrina_a_int_trapezoid, Test_3) {
+TEST(Parallel_mortina_a_int_trapizoid, Test_3) {
   double a1 = 0.0;
   double b1 = 1.0;
   double a2 = 0.0;
@@ -174,7 +174,7 @@ TEST(Sequential_motrina_a_int_trapezoid, Test_3) {
   ASSERT_NEAR(par_res[0], out[0], 0.0001);
 }
 
-TEST(Sequential_motrina_a_int_trapezoid, Test_4) {
+TEST(Parallel_mortina_a_int_trapizoid, Test_4) {
   double a1 = 0.0;
   double b1 = 3.14159265358979323846;
   double a2 = 0.0;
@@ -231,7 +231,7 @@ TEST(Sequential_motrina_a_int_trapezoid, Test_4) {
   ASSERT_NEAR(par_res[0], out[0], 0.0001);
 }
 
-TEST(Sequential_motrina_a_int_trapezoid, Test_5) {
+TEST(Parallel_mortina_a_int_trapizoid, Test_5) {
   double a1 = 1.0;
   double b1 = 2.0;
   double a2 = 1.0;
