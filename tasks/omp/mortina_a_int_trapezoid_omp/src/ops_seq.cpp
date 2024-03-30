@@ -1,10 +1,10 @@
 // Copyright 2024 Mortina Nastya
-#include "omp/mortina_a_int_trapezoid_omp/include/ops_omp.hpp"
-
 #include <cmath>
 #include <functional>
 #include <iostream>
 #include <thread>
+
+#include "omp/mortina_a_int_trapezoid_omp/include/ops_omp.hpp"
 
 using namespace std::chrono_literals;
 
@@ -34,12 +34,12 @@ double trapezoidal_integral(double a1, double b1, double a2, double b2, int n1, 
 }
 
 double trapezoidal_integral_omp(double a1, double b1, double a2, double b2, int n1, int n2,
-                            std::function<double(double, double)> f) {
+                                std::function<double(double, double)> f) {
   double h1 = (b1 - a1) / n1;
   double h2 = (b2 - a2) / n2;
   double integral = 0.0;
 
-#pragma omp parallel for reduction(+:integral)
+#pragma omp parallel for reduction(+ : integral)
   for (int i = 0; i < n1; ++i) {
     for (int j = 0; j < n2; ++j) {
       double x0 = a1 + i * h1;

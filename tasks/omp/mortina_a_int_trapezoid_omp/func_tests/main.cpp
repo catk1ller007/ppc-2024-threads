@@ -95,7 +95,7 @@ TEST(Sequential_motrina_a_int_trapezoid, Test_2) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  
+
   // Create data
   std::vector<double> par_res(1, res);
 
@@ -208,7 +208,7 @@ TEST(Sequential_motrina_a_int_trapezoid, Test_4) {
   testTaskSequential.pre_processing();
   testTaskSequential.run();
   testTaskSequential.post_processing();
-  
+
   // Create data
   std::vector<double> par_res(1, res);
 

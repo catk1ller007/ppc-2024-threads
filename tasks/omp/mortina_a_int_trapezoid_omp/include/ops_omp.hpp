@@ -27,7 +27,7 @@ class TestTaskSequentialMortinaIntegralTrapezoid : public ppc::core::Task {
 class TestOMPTaskParallelMortinaIntegralTrapezoid : public ppc::core::Task {
  public:
   explicit TestOMPTaskParallelMortinaIntegralTrapezoid(std::shared_ptr<ppc::core::TaskData> taskData_,
-                                                      std::function<double(double, double)> fun_)
+                                                       std::function<double(double, double)> fun_)
       : Task(std::move(taskData_)), fun(std::move(fun_)) {}
   bool pre_processing() override;
   bool validation() override;
@@ -46,4 +46,4 @@ double trapezoidal_integral(double a1, double b1, double a2, double b2, int n1, 
                             std::function<double(double, double)> fun);
 
 double trapezoidal_integral_omp(double a1, double b1, double a2, double b2, int n1, int n2,
-                            std::function<double(double, double)> fun);
+                                std::function<double(double, double)> fun);
