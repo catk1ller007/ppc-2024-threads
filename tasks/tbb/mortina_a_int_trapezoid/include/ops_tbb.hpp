@@ -1,17 +1,18 @@
 // Copyright 2024 Mortina Nastya
 #pragma once
 
+#include <tbb/tbb.h>
+
 #include <functional>
 #include <string>
 #include <vector>
-#include <tbb/tbb.h>
 
 #include "core/task/include/task.hpp"
 
 class TestTBBTaskSequentialMortinaIntegralTrapezoid : public ppc::core::Task {
  public:
   explicit TestTBBTaskSequentialMortinaIntegralTrapezoid(std::shared_ptr<ppc::core::TaskData> taskData_,
-                                                      std::function<double(double, double)> fun_)
+                                                         std::function<double(double, double)> fun_)
       : Task(std::move(taskData_)), fun(std::move(fun_)) {}
   bool pre_processing() override;
   bool validation() override;

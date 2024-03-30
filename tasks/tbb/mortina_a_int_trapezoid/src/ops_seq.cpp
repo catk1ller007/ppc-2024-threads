@@ -1,9 +1,10 @@
 // Copyright 2024 Mortina Nastya
+#include <tbb/tbb.h>
+
 #include <cmath>
 #include <functional>
 #include <iostream>
 #include <thread>
-#include <tbb/tbb.h>
 
 #include "tbb/mortina_a_int_trapezoid/include/ops_tbb.hpp"
 
@@ -34,16 +35,18 @@ double trapezoidal_integral(double a1, double b1, double a2, double b2, int n1, 
   return integral;
 }
 
-double trapezoidal_integral_tbb(double a1, double b1, double a2, double b2, int n1, int n2, std::function<double(double, double)> f) {
+double trapezoidal_integral_tbb(double a1, double b1, double a2, double b2, int n1, int n2,
+                                std::function<double(double, double)> f) {
 
   double h1 = (b1 - a1) / n1;
   double h2 = (b2 - a2) / n2;
   double result = 0;
 
-  result = tbb::parallel_reduce(tbb::blocked_range2d<int>(0, n1, 0, n2), 0.0,
-    [&](const tbb::blocked_range2d<int>& r, double res) {
-      for (int i = r.rows().begin(); i != r.rows().end(); ++i) {
-        for (int j = r.cols().begin(); j != r.cols().end(); ++j) {
+  result = tbb::parallel_reduce(
+      tbb::blocked_range2d<int>(0, n1, 0, n2), 0.0,
+      [&](const tbb::blocked_range2d<int>& r, double res) {
+        for (int i = r.rows().begin(); i != r.rows().end(); ++i) {
+          for (int j = r.cols().begin(); j != r.cols().end(); ++j) {
             double x0 = a1 + i * h1;
             double x1 = a1 + (i + 1) * h1;
 
@@ -56,10 +59,11 @@ double trapezoidal_integral_tbb(double a1, double b1, double a2, double b2, int 
             double f11 = f(x1, y1);
 
             res += ((f00 + f01 + f10 + f11) / 4.0) * (x1 - x0) * (y1 - y0);
+          }
         }
-      }
     return res;
-  }, std::plus<double>());
+      },
+      std::plus<double>());
 
   return result;
 }
