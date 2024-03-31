@@ -49,21 +49,37 @@ std::vector<Point> JarvisAlgo(const std::vector<Point>& arrPoints) {
   return convexHull;
 }
 
-std::vector<Point> JarvisAlgo_tbb(const std::vector<Point>& arrPoints, int threadsNom) {
-  std::vector<Point> res;
+std::vector<Point> JarvisAlgo_tbb(const std::vector<Point>& arrPoints) {
+  if (arrPoints.size() < 3) return arrPoints;
 
-  tbb::parallel_for(tbb::blocked_range<size_t>(0, arrPoints.size(), arrPoints.size() / threadsNom),
-    [&](const tbb::blocked_range<size_t>& r) {
-      std::vector<Point> localArrPoints(arrPoints.begin() + r.begin(), arrPoints.begin() + r.end()); 
-      std::vector<Point> localRes = JarvisAlgo(localArrPoints); 
+  auto startPoint = *std::min_element(arrPoints.begin(), arrPoints.end(), [](const Point& p, const Point& q) {
+    return p.y < q.y || (p.y == q.y && p.x < q.x);
+  });
 
-      tbb::mutex mutex;
-      mutex.lock();
-      res.insert(res.end(), localRes.begin(), localRes.end());
-      mutex.unlock();
+  std::vector<Point> convexHull;
+  convexHull.push_back(startPoint);
+
+  Point prevPoint = startPoint;
+
+  while (true) {
+    Point nextPoint = arrPoints[0];
+    tbb::parallel_for(tbb::blocked_range<size_t>(0, arrPoints.size()), [&](const tbb::blocked_range<size_t>& r) {
+    for (size_t i = r.begin(); i != r.end(); ++i) {
+        if (arrPoints[i] == prevPoint) continue;
+        int orient = orientation(prevPoint, nextPoint, arrPoints[i]);
+        if (orient == 2 || (orient == 0 && distance(prevPoint, arrPoints[i]) > distance(prevPoint, nextPoint))) {
+            nextPoint = arrPoints[i];
+        }
+      }
     });
 
-  return JarvisAlgo(res);
+
+    if (nextPoint == startPoint) break;
+    convexHull.push_back(nextPoint);
+    prevPoint = nextPoint;
+  }
+
+  return convexHull;
 }
 
 bool TestTaskSequentialKosarevJarvisHull::pre_processing() {
@@ -116,7 +132,7 @@ bool TestTBBTaskParallelKosarevJarvisHull::validation() {
 
 bool TestTBBTaskParallelKosarevJarvisHull::run() {
   internal_order_test();
-  pointsHull = JarvisAlgo_tbb(points, 5);
+  pointsHull = JarvisAlgo_tbb(points);
   std::this_thread::sleep_for(30ms);
   return true;
 }
