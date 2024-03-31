@@ -37,11 +37,11 @@ bool TestTaskSequentialMortinaIntegralTrapezoid::pre_processing() {
   internal_order_test();
   // Init value for input and output
   a1 = reinterpret_cast<double *>(taskData->inputs[0])[0];
-  b1 = reinterpret_cast<double*>(taskData->inputs[0])[1];
-  a2 = reinterpret_cast<double*>(taskData->inputs[0])[2];
-  b2 = reinterpret_cast<double*>(taskData->inputs[0])[3];
-  n1 = reinterpret_cast<int*>(taskData->inputs[1])[0];
-  n2 = reinterpret_cast<int*>(taskData->inputs[1])[1];
+  b1 = reinterpret_cast<double *>(taskData->inputs[0])[1];
+  a2 = reinterpret_cast<double *>(taskData->inputs[0])[2];
+  b2 = reinterpret_cast<double *>(taskData->inputs[0])[3];
+  n1 = reinterpret_cast<int *>(taskData->inputs[1])[0];
+  n2 = reinterpret_cast<int *>(taskData->inputs[1])[1];
 
   return true;
 }
