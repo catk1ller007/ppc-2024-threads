@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <random>
 #include <stack>
 #include <thread>
 #include <vector>
@@ -13,6 +14,22 @@ int orientation(const Point& p, const Point& q, const Point& r) {
   int val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
   if (val == 0) return 0;    // collinear
   return (val > 0) ? 1 : 2;  // clock or counterclock
+}
+
+Point generateRandomPoint(int minX, int maxX, int minY, int maxY) {
+  static std::random_device rd;
+  static std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> disX(minX, maxX);
+  std::uniform_int_distribution<int> disY(minY, maxY);
+  return {disX(gen), disY(gen)};
+}
+
+std::vector<Point> generateRandomPoints(int numPoints, int minX, int maxX, int minY, int maxY) {
+  std::vector<Point> points;
+  for (int i = 0; i < numPoints; ++i) {
+    points.push_back(generateRandomPoint(minX, maxX, minY, maxY));
+  }
+  return points;
 }
 
 double distance(const Point& p1, const Point& p2) {
