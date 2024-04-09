@@ -50,4 +50,4 @@ std::vector<double> cannonMatrixMultiplication_omp(const std::vector<double>& A,
 std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, const std::vector<double>& B, int n,
                                                int m);
 
-}
+}  // namespace Kulaev_Omp

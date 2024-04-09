@@ -191,4 +191,4 @@ bool TestTaskOMPParallelKulaevCannon::post_processing() {
   return true;
 }
 
-}  // Kulaev_omp
+}  // namespace Kulaev_Omp
