@@ -39,7 +39,7 @@ TEST(sequential_mortina_a_int_trapezoid, test_pipeline_run) {
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
-  perfAttr->num_running = 10;
+  perfAttr->num_running = 100;
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
@@ -88,7 +88,7 @@ TEST(sequential_mortina_a_int_trapezoid, test_task_run) {
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
-  perfAttr->num_running = 10;
+  perfAttr->num_running = 100;
   const auto t0 = std::chrono::high_resolution_clock::now();
   perfAttr->current_timer = [&] {
     auto current_time_point = std::chrono::high_resolution_clock::now();
