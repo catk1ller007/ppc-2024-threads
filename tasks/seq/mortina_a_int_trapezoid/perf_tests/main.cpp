@@ -8,17 +8,17 @@
 #include "seq/mortina_a_int_trapezoid/include/ops_seq.hpp"
 
 TEST(sequential_mortina_a_int_trapezoid, test_pipeline_run) {
-  double a1 = 1.0;
-  double b1 = 2.0;
-  double a2 = 1.0;
-  double b2 = 2.0;
+  double a1 = 0.0;
+  double b1 = 3.14159265358979323846;
+  double a2 = 0.0;
+  double b2 = 3.14159265358979323846;
 
-  int n1 = 300;
-  int n2 = 300;
+  int n1 = 500;
+  int n2 = 500;
 
-  double res = 1.039;
+  double res = 2 * 3.14159265358979323846;
 
-  auto x_del_y = [](double x, double y) { return x / y; };
+  auto sin_cos = [](double x, double y) { return sin(x) + cos(y); };
 
   // Create data
   std::vector<double> in = {a1, b1, a2, b2};
@@ -35,7 +35,7 @@ TEST(sequential_mortina_a_int_trapezoid, test_pipeline_run) {
   taskDataSeq->outputs_count.emplace_back(out.size());
 
   // Create Task
-  auto testTaskSequential = std::make_shared<TestTaskSequentialMortinaIntegralTrapezoid>(taskDataSeq, x_del_y);
+  auto testTaskSequential = std::make_shared<TestTaskSequentialMortinaIntegralTrapezoid>(taskDataSeq, sin_cos);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -58,22 +58,23 @@ TEST(sequential_mortina_a_int_trapezoid, test_pipeline_run) {
 }
 
 TEST(sequential_mortina_a_int_trapezoid, test_task_run) {
-  double a1 = 1.0;
-  double b1 = 2.0;
-  double a2 = 1.0;
-  double b2 = 2.0;
+  double a1 = 0.0;
+  double b1 = 3.14159265358979323846;
+  double a2 = 0.0;
+  double b2 = 3.14159265358979323846;
 
-  int n1 = 300;
-  int n2 = 300;
+  int n1 = 500;
+  int n2 = 500;
 
-  double res = 1.039;
+  double res = 2 * 3.14159265358979323846;
 
-  auto x_del_y = [](double x, double y) { return x / y; };
+  auto sin_cos = [](double x, double y) { return sin(x) + cos(y); };
 
   // Create data
   std::vector<double> in = {a1, b1, a2, b2};
   std::vector<double> out(1, res);
   std::vector<int> n = {n1, n2};
+
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -84,7 +85,7 @@ TEST(sequential_mortina_a_int_trapezoid, test_task_run) {
   taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(out.data()));
   taskDataSeq->outputs_count.emplace_back(out.size());
   // Create Task
-  auto testTaskSequential = std::make_shared<TestTaskSequentialMortinaIntegralTrapezoid>(taskDataSeq, x_del_y);
+  auto testTaskSequential = std::make_shared<TestTaskSequentialMortinaIntegralTrapezoid>(taskDataSeq, sin_cos);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
