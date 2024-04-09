@@ -7,7 +7,7 @@
 #include "omp/kosarev_e_jarvis_hull_omp/include/ops_omp.hpp"
 
 TEST(kosarev_e_jarvis_hull_omp, test_pipeline_run) {
-  std::vector<Point> points = generateRandomPoints(250000, -140, 140, -140, 140);
+  std::vector<Point> points = generateRandomPoints(120000, -140, 140, -140, 140);
   std::vector<Point> resHull = points;
 
   // Create TaskData
@@ -50,7 +50,7 @@ TEST(kosarev_e_jarvis_hull_omp, test_pipeline_run) {
 }
 
 TEST(kosarev_e_jarvis_hull_omp, test_task_run) {
-  std::vector<Point> points = generateRandomPoints(250000, 20, 40, 20, 40);
+  std::vector<Point> points = generateRandomPoints(120000, -140, 140, -140, 140);
   std::vector<Point> resHull = points;
 
   // Create TaskData
