@@ -12,9 +12,9 @@ TEST(kosarev_e_jarvis_hull_seq, test_pipeline_run) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(points.data()));
   taskDataSeq->inputs_count.emplace_back(points.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(resHull.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(resHull.data()));
   taskDataSeq->outputs_count.emplace_back(resHull.size());
 
   // Create Task
@@ -55,9 +55,9 @@ TEST(kosarev_e_jarvis_hull_seq, test_task_run) {
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(points.data()));
   taskDataSeq->inputs_count.emplace_back(points.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(resHull.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(resHull.data()));
   taskDataSeq->outputs_count.emplace_back(resHull.size());
 
   // Create Task
