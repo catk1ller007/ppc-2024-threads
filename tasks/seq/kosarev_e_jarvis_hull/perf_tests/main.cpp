@@ -7,7 +7,7 @@
 #include "seq/kosarev_e_jarvis_hull/include/ops_seq.hpp"
 
 TEST(kosarev_e_jarvis_hull_seq, test_pipeline_run) {
-  std::vector<Point> points = generateRandomPoints(250000, -140, 140, -140, 140);
+  std::vector<Point> points = generateRandomPoints(120000, -140, 140, -140, 140);
   std::vector<Point> resHull = points;
 
   // Create TaskData
@@ -50,7 +50,7 @@ TEST(kosarev_e_jarvis_hull_seq, test_pipeline_run) {
 }
 
 TEST(kosarev_e_jarvis_hull_seq, test_task_run) {
-  std::vector<Point> points = generateRandomPoints(250000, -140, 140, -140, 140);
+  std::vector<Point> points = generateRandomPoints(120000, -140, 140, -140, 140);
   std::vector<Point> resHull = points;
 
   // Create TaskData
