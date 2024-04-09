@@ -6,16 +6,15 @@
 #include "core/perf/include/perf.hpp"
 #include "omp/kosarev_e_jarvis_hull_omp/include/ops_omp.hpp"
 
-
 TEST(kosarev_e_jarvis_hull_omp, test_pipeline_run) {
-  std::vector<Point> points = generateRandomPoints(120000, -140, 140, -140, 140);
+  std::vector<Point> points = generateRandomPoints(250000, -140, 140, -140, 140);
   std::vector<Point> resHull = points;
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(points.data()));
   taskDataSeq->inputs_count.emplace_back(points.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(resHull.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(resHull.data()));
   taskDataSeq->outputs_count.emplace_back(resHull.size());
 
   // Create Task
@@ -41,24 +40,24 @@ TEST(kosarev_e_jarvis_hull_omp, test_pipeline_run) {
   for (const auto& hullPoint : resHull) {
     bool found = false;
     for (const auto& point : points) {
-        if (hullPoint == point) {
-            found = true;
-            break;
-        }
+      if (hullPoint == point) {
+        found = true;
+        break;
+      }
     }
     ASSERT_TRUE(found);
   }
 }
 
 TEST(kosarev_e_jarvis_hull_omp, test_task_run) {
-  std::vector<Point> points = generateRandomPoints(500000, 20, 40, 20, 40);
+  std::vector<Point> points = generateRandomPoints(250000, 20, 40, 20, 40);
   std::vector<Point> resHull = points;
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
-  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(points.data()));
+  taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t*>(points.data()));
   taskDataSeq->inputs_count.emplace_back(points.size());
-  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(resHull.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t*>(resHull.data()));
   taskDataSeq->outputs_count.emplace_back(resHull.size());
 
   // Create Task
@@ -82,13 +81,12 @@ TEST(kosarev_e_jarvis_hull_omp, test_task_run) {
   perfAnalyzer->task_run(perfAttr, perfResults);
   ppc::core::Perf::print_perf_statistic(perfResults);
   for (const auto& hullPoint : resHull) {
-    // Проверяем, содержится ли точка в pointsVector
     bool found = false;
     for (const auto& point : points) {
-        if (hullPoint == point) {
-            found = true;
-            break;
-        }
+      if (hullPoint == point) {
+        found = true;
+        break;
+      }
     }
     ASSERT_TRUE(found);
   }
