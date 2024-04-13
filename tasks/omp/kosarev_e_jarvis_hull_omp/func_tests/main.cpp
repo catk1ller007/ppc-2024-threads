@@ -6,8 +6,8 @@
 #include "omp/kosarev_e_jarvis_hull_omp/include/ops_omp.hpp"
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_one) {
-  std::vector<Point> points = {{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}};
-  std::vector<Point> resHull_seq(points.size());
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = {{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}};
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_seq(points.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -17,14 +17,14 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_one) {
   taskDataSeq->outputs_count.emplace_back(resHull_seq.size());
 
   // Create Task
-  TestTaskSequentialKosarevJarvisHull testOmpTaskSequential(taskDataSeq);
+  Kosarev_e_OMP_KosarevJarvisHull::TestTaskSequentialKosarevJarvisHull testOmpTaskSequential(taskDataSeq);
   ASSERT_EQ(testOmpTaskSequential.validation(), true);
   testOmpTaskSequential.pre_processing();
   testOmpTaskSequential.run();
   testOmpTaskSequential.post_processing();
 
   // Create data
-  std::vector<Point> resHull_par(points.size());
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_par(points.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
@@ -34,7 +34,7 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_one) {
   taskDataPar->outputs_count.emplace_back(resHull_par.size());
 
   // Create Task
-  TestOMPTaskParallelKosarevJarvisHull testOmpTaskParallel(taskDataPar);
+  Kosarev_e_OMP_KosarevJarvisHull::TestOMPTaskParallelKosarevJarvisHull testOmpTaskParallel(taskDataPar);
   ASSERT_EQ(testOmpTaskParallel.validation(), true);
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();
@@ -46,9 +46,9 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_one) {
 }
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_two) {
-  std::vector<Point> points = {{2, 5},  {7, 3},  {1, 1}, {-1, 4}, {-5, 4}, {-4, 1}, {-1, -2},
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = {{2, 5},  {7, 3},  {1, 1}, {-1, 4}, {-5, 4}, {-4, 1}, {-1, -2},
                                {2, -3}, {3, -1}, {2, 2}, {1, 5},  {-4, 5}, {-1, 0}};
-  std::vector<Point> resHull_seq(points.size());
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_seq(points.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -58,14 +58,14 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_two) {
   taskDataSeq->outputs_count.emplace_back(resHull_seq.size());
 
   // Create Task
-  TestTaskSequentialKosarevJarvisHull testOmpTaskSequential(taskDataSeq);
+  Kosarev_e_OMP_KosarevJarvisHull::TestTaskSequentialKosarevJarvisHull testOmpTaskSequential(taskDataSeq);
   ASSERT_EQ(testOmpTaskSequential.validation(), true);
   testOmpTaskSequential.pre_processing();
   testOmpTaskSequential.run();
   testOmpTaskSequential.post_processing();
 
   // Create data
-  std::vector<Point> resHull_par(points.size());
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_par(points.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
@@ -75,7 +75,7 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_two) {
   taskDataPar->outputs_count.emplace_back(resHull_par.size());
 
   // Create Task
-  TestOMPTaskParallelKosarevJarvisHull testOmpTaskParallel(taskDataPar);
+  Kosarev_e_OMP_KosarevJarvisHull::TestOMPTaskParallelKosarevJarvisHull testOmpTaskParallel(taskDataPar);
   ASSERT_EQ(testOmpTaskParallel.validation(), true);
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();
@@ -87,8 +87,8 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_two) {
 }
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_three) {
-  std::vector<Point> points = {{2, 5}, {7, 3}, {1, 1}};
-  std::vector<Point> resHull_seq(points.size());
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = {{2, 5}, {7, 3}, {1, 1}};
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_seq(points.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -98,14 +98,14 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_three) {
   taskDataSeq->outputs_count.emplace_back(resHull_seq.size());
 
   // Create Task
-  TestTaskSequentialKosarevJarvisHull testOmpTaskSequential(taskDataSeq);
+  Kosarev_e_OMP_KosarevJarvisHull::TestTaskSequentialKosarevJarvisHull testOmpTaskSequential(taskDataSeq);
   ASSERT_EQ(testOmpTaskSequential.validation(), true);
   testOmpTaskSequential.pre_processing();
   testOmpTaskSequential.run();
   testOmpTaskSequential.post_processing();
 
   // Create data
-  std::vector<Point> resHull_par(points.size());
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_par(points.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
@@ -115,7 +115,7 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_three) {
   taskDataPar->outputs_count.emplace_back(resHull_par.size());
 
   // Create Task
-  TestOMPTaskParallelKosarevJarvisHull testOmpTaskParallel(taskDataPar);
+  Kosarev_e_OMP_KosarevJarvisHull::TestOMPTaskParallelKosarevJarvisHull testOmpTaskParallel(taskDataPar);
   ASSERT_EQ(testOmpTaskParallel.validation(), true);
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();
@@ -127,8 +127,8 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_three) {
 }
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_no_hull) {
-  std::vector<Point> points = {};
-  std::vector<Point> resHull_seq(points.size());
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = {};
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_seq(points.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -138,14 +138,14 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_no_hull) {
   taskDataSeq->outputs_count.emplace_back(resHull_seq.size());
 
   // Create Task
-  TestTaskSequentialKosarevJarvisHull testOmpTaskSequential(taskDataSeq);
+  Kosarev_e_OMP_KosarevJarvisHull::TestTaskSequentialKosarevJarvisHull testOmpTaskSequential(taskDataSeq);
   ASSERT_EQ(testOmpTaskSequential.validation(), true);
   testOmpTaskSequential.pre_processing();
   testOmpTaskSequential.run();
   testOmpTaskSequential.post_processing();
 
   // Create data
-  std::vector<Point> resHull_par(points.size());
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_par(points.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
@@ -155,7 +155,7 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_no_hull) {
   taskDataPar->outputs_count.emplace_back(resHull_par.size());
 
   // Create Task
-  TestOMPTaskParallelKosarevJarvisHull testOmpTaskParallel(taskDataPar);
+  Kosarev_e_OMP_KosarevJarvisHull::TestOMPTaskParallelKosarevJarvisHull testOmpTaskParallel(taskDataPar);
   ASSERT_EQ(testOmpTaskParallel.validation(), true);
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();
@@ -167,8 +167,8 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_no_hull) {
 }
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_five) {
-  std::vector<Point> points = {{1, 4}, {1, 5}, {1, 6}, {1, 2}, {1, 3}, {2, 5}, {3, 4}, {0, 5}, {1, 7}};
-  std::vector<Point> resHull_seq(points.size());
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = {{1, 4}, {1, 5}, {1, 6}, {1, 2}, {1, 3}, {2, 5}, {3, 4}, {0, 5}, {1, 7}};
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_seq(points.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -178,14 +178,14 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_five) {
   taskDataSeq->outputs_count.emplace_back(resHull_seq.size());
 
   // Create Task
-  TestTaskSequentialKosarevJarvisHull testOmpTaskSequential(taskDataSeq);
+  Kosarev_e_OMP_KosarevJarvisHull::TestTaskSequentialKosarevJarvisHull testOmpTaskSequential(taskDataSeq);
   ASSERT_EQ(testOmpTaskSequential.validation(), true);
   testOmpTaskSequential.pre_processing();
   testOmpTaskSequential.run();
   testOmpTaskSequential.post_processing();
 
   // Create data
-  std::vector<Point> resHull_par(points.size());
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_par(points.size());
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
@@ -195,7 +195,7 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_five) {
   taskDataPar->outputs_count.emplace_back(resHull_par.size());
 
   // Create Task
-  TestOMPTaskParallelKosarevJarvisHull testOmpTaskParallel(taskDataPar);
+  Kosarev_e_OMP_KosarevJarvisHull::TestOMPTaskParallelKosarevJarvisHull testOmpTaskParallel(taskDataPar);
   ASSERT_EQ(testOmpTaskParallel.validation(), true);
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();

@@ -6,10 +6,9 @@
 #include <algorithm>
 #include <cmath>
 #include <random>
-#include <thread>
 #include <vector>
 
-using namespace std::chrono_literals;
+namespace Kosarev_e_OMP_KosarevJarvisHull {
 
 int orientation(const Point& p, const Point& q, const Point& r) {
   int val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
@@ -154,3 +153,5 @@ bool TestOMPTaskParallelKosarevJarvisHull::post_processing() {
   std::copy(pointsHull.begin(), pointsHull.end(), reinterpret_cast<Point*>(taskData->outputs[0]));
   return true;
 }
+
+}  // namespace Kosarev_e_OMP_KosarevJarvisHull

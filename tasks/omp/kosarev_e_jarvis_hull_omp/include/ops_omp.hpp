@@ -8,6 +8,8 @@
 
 #include "core/task/include/task.hpp"
 
+namespace Kosarev_e_OMP_KosarevJarvisHull {
+
 struct Point {
   int x, y;
 
@@ -53,3 +55,5 @@ double distance(const Point& p1, const Point& p2);
 std::vector<Point> JarvisAlgo(const std::vector<Point>& arrPoints);
 
 std::vector<Point> JarvisAlgo_omp(const std::vector<Point>& arrPoints, int threadsNom);
+
+}  // namespace Kosarev_e_OMP_KosarevJarvisHull
