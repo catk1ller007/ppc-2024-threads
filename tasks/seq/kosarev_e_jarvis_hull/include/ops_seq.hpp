@@ -41,4 +41,4 @@ double distance(const Point& p1, const Point& p2);
 
 std::vector<Point> JarvisAlgo(const std::vector<Point>& arrPoints);
 
-}  // Kosarev_e_JarvisHull
+}  // namespace Kosarev_e_JarvisHull

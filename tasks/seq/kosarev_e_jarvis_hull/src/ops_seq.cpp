@@ -95,4 +95,4 @@ bool TestTaskSequentialKosarevJarvisHull::post_processing() {
   return true;
 }
 
-}  // Kosarev_e_JarvisHull
+}  // namespace Kosarev_e_JarvisHull

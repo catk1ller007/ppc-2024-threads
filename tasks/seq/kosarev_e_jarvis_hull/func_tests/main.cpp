@@ -31,7 +31,7 @@ TEST(Kosarev_e_jarvis_seq, Test_hull_one) {
 
 TEST(Kosarev_e_jarvis_seq, Test_hull_two) {
   std::vector<Kosarev_e_JarvisHull::Point> points = {{2, 5},  {7, 3},  {1, 1}, {-1, 4}, {-5, 4}, {-4, 1}, {-1, -2},
-                               {2, -3}, {3, -1}, {2, 2}, {1, 5},  {-4, 5}, {-1, 0}};
+                                                     {2, -3}, {3, -1}, {2, 2}, {1, 5},  {-4, 5}, {-1, 0}};
   std::vector<Kosarev_e_JarvisHull::Point> hull = {
       {2, -3}, {-1, -2}, {-4, 1}, {-5, 4}, {-4, 5}, {2, 5}, {7, 3},
   };
@@ -105,7 +105,8 @@ TEST(Kosarev_e_jarvis_seq, Test_hull_no_hull) {
 }
 
 TEST(Kosarev_e_jarvis_seq, Test_hull_yes_hull) {
-  std::vector<Kosarev_e_JarvisHull::Point> points = {{1, 4}, {1, 5}, {1, 6}, {1, 2}, {1, 3}, {2, 5}, {3, 4}, {0, 5}, {1, 7}};
+  std::vector<Kosarev_e_JarvisHull::Point> points = {{1, 4}, {1, 5}, {1, 6}, {1, 2}, {1, 3},
+                                                     {2, 5}, {3, 4}, {0, 5}, {1, 7}};
   std::vector<Kosarev_e_JarvisHull::Point> hull = {{1, 2}, {0, 5}, {1, 7}, {3, 4}};
   std::vector<Kosarev_e_JarvisHull::Point> resHull(hull.size());
 
