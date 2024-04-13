@@ -5,10 +5,9 @@
 #include <cmath>
 #include <random>
 #include <stack>
-#include <thread>
 #include <vector>
 
-using namespace std::chrono_literals;
+namespace Kosarev_e_JarvisHull {
 
 int orientation(const Point& p, const Point& q, const Point& r) {
   int val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
@@ -87,7 +86,6 @@ bool TestTaskSequentialKosarevJarvisHull::validation() {
 bool TestTaskSequentialKosarevJarvisHull::run() {
   internal_order_test();
   pointsHull = JarvisAlgo(points);
-  std::this_thread::sleep_for(20ms);
   return true;
 }
 
@@ -96,3 +94,5 @@ bool TestTaskSequentialKosarevJarvisHull::post_processing() {
   std::copy(pointsHull.begin(), pointsHull.end(), reinterpret_cast<Point*>(taskData->outputs[0]));
   return true;
 }
+
+}  // Kosarev_e_JarvisHull

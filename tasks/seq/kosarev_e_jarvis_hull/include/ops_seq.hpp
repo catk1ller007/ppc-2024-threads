@@ -9,6 +9,8 @@
 
 #include "core/task/include/task.hpp"
 
+namespace Kosarev_e_JarvisHull {
+
 struct Point {
   int x, y;
 
@@ -38,3 +40,5 @@ int orientation(const Point& p, const Point& q, const Point& r);
 double distance(const Point& p1, const Point& p2);
 
 std::vector<Point> JarvisAlgo(const std::vector<Point>& arrPoints);
+
+}  // Kosarev_e_JarvisHull

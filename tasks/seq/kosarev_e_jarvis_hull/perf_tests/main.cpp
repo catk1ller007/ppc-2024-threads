@@ -7,8 +7,8 @@
 #include "seq/kosarev_e_jarvis_hull/include/ops_seq.hpp"
 
 TEST(kosarev_e_jarvis_hull_seq, test_pipeline_run) {
-  std::vector<Point> points = generateRandomPoints(120000, -140, 140, -140, 140);
-  std::vector<Point> resHull = points;
+  std::vector<Kosarev_e_JarvisHull::Point> points = Kosarev_e_JarvisHull::generateRandomPoints(120000, -1400, 1400, -1400, 1400);
+  std::vector<Kosarev_e_JarvisHull::Point> resHull = points;
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -18,7 +18,7 @@ TEST(kosarev_e_jarvis_hull_seq, test_pipeline_run) {
   taskDataSeq->outputs_count.emplace_back(resHull.size());
 
   // Create Task
-  auto testTaskSequential = std::make_shared<TestTaskSequentialKosarevJarvisHull>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<Kosarev_e_JarvisHull::TestTaskSequentialKosarevJarvisHull>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -50,8 +50,8 @@ TEST(kosarev_e_jarvis_hull_seq, test_pipeline_run) {
 }
 
 TEST(kosarev_e_jarvis_hull_seq, test_task_run) {
-  std::vector<Point> points = generateRandomPoints(120000, -140, 140, -140, 140);
-  std::vector<Point> resHull = points;
+  std::vector<Kosarev_e_JarvisHull::Point> points = Kosarev_e_JarvisHull::generateRandomPoints(120000, -1400, 1400, -1400, 1400);
+  std::vector<Kosarev_e_JarvisHull::Point> resHull = points;
 
   // Create TaskData
   std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
@@ -61,7 +61,7 @@ TEST(kosarev_e_jarvis_hull_seq, test_task_run) {
   taskDataSeq->outputs_count.emplace_back(resHull.size());
 
   // Create Task
-  auto testTaskSequential = std::make_shared<TestTaskSequentialKosarevJarvisHull>(taskDataSeq);
+  auto testTaskSequential = std::make_shared<Kosarev_e_JarvisHull::TestTaskSequentialKosarevJarvisHull>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
