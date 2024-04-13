@@ -6,7 +6,8 @@
 #include "omp/kosarev_e_jarvis_hull_omp/include/ops_omp.hpp"
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_one) {
-  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = {{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}};
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = {{0, 3}, {1, 1}, {2, 2}, {4, 4},
+                                                                {0, 0}, {1, 2}, {3, 1}, {3, 3}};
   std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_seq(points.size());
 
   // Create TaskData
@@ -46,8 +47,8 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_one) {
 }
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_two) {
-  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = {{2, 5},  {7, 3},  {1, 1}, {-1, 4}, {-5, 4}, {-4, 1}, {-1, -2},
-                               {2, -3}, {3, -1}, {2, 2}, {1, 5},  {-4, 5}, {-1, 0}};
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = {
+        {2, 5},  {7, 3},  {1, 1}, {-1, 4}, {-5, 4}, {-4, 1}, {-1, -2}, {2, -3}, {3, -1}, {2, 2}, {1, 5}, {-4, 5}, {-1, 0}};
   std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_seq(points.size());
 
   // Create TaskData
@@ -167,7 +168,8 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_no_hull) {
 }
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_five) {
-  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = {{1, 4}, {1, 5}, {1, 6}, {1, 2}, {1, 3}, {2, 5}, {3, 4}, {0, 5}, {1, 7}};
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = {{1, 4}, {1, 5}, {1, 6}, {1, 2}, {1, 3},
+                                                                {2, 5}, {3, 4}, {0, 5}, {1, 7}};
   std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull_seq(points.size());
 
   // Create TaskData

@@ -7,7 +7,8 @@
 #include "omp/kosarev_e_jarvis_hull_omp/include/ops_omp.hpp"
 
 TEST(kosarev_e_jarvis_hull_omp, test_pipeline_run) {
-  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = Kosarev_e_OMP_KosarevJarvisHull::generateRandomPoints(120000, -1400, 1400, -1400, 1400);
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points =
+      Kosarev_e_OMP_KosarevJarvisHull::generateRandomPoints(120000, -1400, 1400, -1400, 1400);
   std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull = points;
 
   // Create TaskData
@@ -18,7 +19,8 @@ TEST(kosarev_e_jarvis_hull_omp, test_pipeline_run) {
   taskDataSeq->outputs_count.emplace_back(resHull.size());
 
   // Create Task
-  auto testTaskSequential = std::make_shared<Kosarev_e_OMP_KosarevJarvisHull::TestOMPTaskParallelKosarevJarvisHull>(taskDataSeq);
+  auto testTaskSequential =
+      std::make_shared<Kosarev_e_OMP_KosarevJarvisHull::TestOMPTaskParallelKosarevJarvisHull>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
@@ -50,7 +52,8 @@ TEST(kosarev_e_jarvis_hull_omp, test_pipeline_run) {
 }
 
 TEST(kosarev_e_jarvis_hull_omp, test_task_run) {
-  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points = Kosarev_e_OMP_KosarevJarvisHull::generateRandomPoints(120000, -1400, 1400, -1400, 1400);
+  std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> points =
+      Kosarev_e_OMP_KosarevJarvisHull::generateRandomPoints(120000, -1400, 1400, -1400, 1400);
   std::vector<Kosarev_e_OMP_KosarevJarvisHull::Point> resHull = points;
 
   // Create TaskData
@@ -61,7 +64,8 @@ TEST(kosarev_e_jarvis_hull_omp, test_task_run) {
   taskDataSeq->outputs_count.emplace_back(resHull.size());
 
   // Create Task
-  auto testTaskSequential = std::make_shared<Kosarev_e_OMP_KosarevJarvisHull::TestOMPTaskParallelKosarevJarvisHull>(taskDataSeq);
+  auto testTaskSequential =
+      std::make_shared<Kosarev_e_OMP_KosarevJarvisHull::TestOMPTaskParallelKosarevJarvisHull>(taskDataSeq);
 
   // Create Perf attributes
   auto perfAttr = std::make_shared<ppc::core::PerfAttr>();
