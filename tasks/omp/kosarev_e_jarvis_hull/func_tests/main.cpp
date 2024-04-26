@@ -38,9 +38,8 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_one) {
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();
   testOmpTaskParallel.post_processing();
-  for (size_t i = 0; i < resHull_par.size(); ++i) {
-    ASSERT_EQ(resHull_par[i], resHull_seq[i]);
-  }
+
+  ASSERT_EQ(resHull_par, resHull_seq);
 }
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_two) {
@@ -79,9 +78,7 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_two) {
   testOmpTaskParallel.run();
   testOmpTaskParallel.post_processing();
 
-  for (size_t i = 0; i < resHull_par.size(); ++i) {
-    ASSERT_EQ(resHull_par[i], resHull_seq[i]);
-  }
+  ASSERT_EQ(resHull_par, resHull_seq);
 }
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_three) {
@@ -119,9 +116,7 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_three) {
   testOmpTaskParallel.run();
   testOmpTaskParallel.post_processing();
 
-  for (size_t i = 0; i < resHull_par.size(); ++i) {
-    ASSERT_EQ(resHull_par[i], resHull_seq[i]);
-  }
+  ASSERT_EQ(resHull_par, resHull_seq);
 }
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_no) {
@@ -158,9 +153,7 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_no) {
   testOmpTaskParallel.run();
   testOmpTaskParallel.post_processing();
 
-  for (size_t i = 0; i < resHull_par.size(); ++i) {
-    ASSERT_EQ(resHull_par[i], resHull_seq[i]);
-  }
+  ASSERT_EQ(resHull_par, resHull_seq);
 }
 
 TEST(Kosarev_e_jarvis_omp, Test_hull_yes) {
@@ -198,7 +191,5 @@ TEST(Kosarev_e_jarvis_omp, Test_hull_yes) {
   testOmpTaskParallel.run();
   testOmpTaskParallel.post_processing();
 
-  for (size_t i = 0; i < resHull_par.size(); ++i) {
-    ASSERT_EQ(resHull_par[i], resHull_seq[i]);
-  }
+  ASSERT_EQ(resHull_par, resHull_seq);
 }

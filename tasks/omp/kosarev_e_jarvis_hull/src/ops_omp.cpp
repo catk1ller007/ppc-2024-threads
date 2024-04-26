@@ -3,11 +3,8 @@
 
 #include <algorithm>
 #include <stack>
-#include <thread>
 #include <vector>
 #include <random>
-
-using namespace std::chrono_literals;
 
 int orientation(Point p, Point q, Point r) {
   int val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
@@ -129,7 +126,6 @@ bool TestTaskSequentialKosarevJarvisHull::validation() {
 bool TestTaskSequentialKosarevJarvisHull::run() {
   internal_order_test();
   pointsHull = convexHull(points);
-  std::this_thread::sleep_for(20ms);
   return true;
 }
 bool TestTaskSequentialKosarevJarvisHull::post_processing() {
@@ -166,7 +162,6 @@ bool TestOMPTaskParallelKosarevJarvisHull::validation() {
 bool TestOMPTaskParallelKosarevJarvisHull::run() {
   internal_order_test();
   pointsHull = convexHull(points);
-  std::this_thread::sleep_for(30ms);
   return true;
 }
 bool TestOMPTaskParallelKosarevJarvisHull::post_processing() {
