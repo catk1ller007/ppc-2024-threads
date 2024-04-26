@@ -2,9 +2,9 @@
 #include "omp/kosarev_e_jarvis_hull/include/ops_omp.hpp"
 
 #include <algorithm>
+#include <random>
 #include <stack>
 #include <vector>
-#include <random>
 
 int orientation(Point p, Point q, Point r) {
   int val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
@@ -66,7 +66,7 @@ std::stack<Point> convexHull(std::vector<Point>& points) {
 Point findFirstPoint_omp(const std::vector<Point>& points) {
   Point first = points[0];
 #pragma omp parallel for
-  for (size_t i = 1; i < points.size(); i++) {
+  for (int i = 1; i < static_cast<int>(points.size()); i++) {
     {
       if (points[i].y < first.y || (points[i].y == first.y && points[i].x < first.x)) {
         first = points[i];
@@ -92,7 +92,7 @@ std::vector<Point> convexHull_omp(std::vector<Point>& points) {
   size_t hull_size = 2;
 
 #pragma omp parallel for
-  for (size_t i = 2; i < points.size(); i++) {
+  for (int i = 2; i < static_cast<int>(points.size()); i++) {
     size_t k = hull_size;
     while (k > 1 && orientation(hull[k - 2], hull[k - 1], points[i]) != 2) {
       --k;
