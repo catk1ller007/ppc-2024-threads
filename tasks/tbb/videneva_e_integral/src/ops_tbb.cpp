@@ -61,4 +61,4 @@ bool VidenevaEIntegralTBB::post_processing() {
   return true;
 }
 
-} // namespace Videneva_e_tbb_integral
+}  // namespace Videneva_e_tbb_integral
