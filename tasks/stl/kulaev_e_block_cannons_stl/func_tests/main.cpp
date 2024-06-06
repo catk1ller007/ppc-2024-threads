@@ -16,8 +16,7 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_3x3) {
   std::vector<double> seq_res(n * m);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataSeq->inputs_count.emplace_back(in_A.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -26,13 +25,11 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_3x3) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&m));
 
-  taskDataSeq->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(seq_res.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(seq_res.data()));
   taskDataSeq->outputs_count.emplace_back(seq_res.size());
 
   // Create Task
-  kulaev_e_block_stl::TestSTLSequentialKulaevCannon testOmpTaskSequential(
-      taskDataSeq);
+  kulaev_e_block_stl::TestSTLSequentialKulaevCannon testOmpTaskSequential(taskDataSeq);
   ASSERT_EQ(testOmpTaskSequential.validation(), true);
   testOmpTaskSequential.pre_processing();
   testOmpTaskSequential.run();
@@ -42,8 +39,7 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_3x3) {
   std::vector<double> par_res(n * m);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataPar =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataPar->inputs_count.emplace_back(in_A.size());
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -52,13 +48,11 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_3x3) {
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&m));
 
-  taskDataPar->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(par_res.data()));
+  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(par_res.data()));
   taskDataPar->outputs_count.emplace_back(par_res.size());
 
   // Create Task
-  kulaev_e_block_stl::TestTaskSTLParallelKulaevCannon testOmpTaskParallel(
-      taskDataPar);
+  kulaev_e_block_stl::TestTaskSTLParallelKulaevCannon testOmpTaskParallel(taskDataPar);
   ASSERT_EQ(testOmpTaskParallel.validation(), true);
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();
@@ -80,8 +74,7 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_2x2) {
   std::vector<double> seq_res(n * m);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataSeq->inputs_count.emplace_back(in_A.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -90,13 +83,11 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_2x2) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&m));
 
-  taskDataSeq->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(seq_res.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(seq_res.data()));
   taskDataSeq->outputs_count.emplace_back(seq_res.size());
 
   // Create Task
-  kulaev_e_block_stl::TestSTLSequentialKulaevCannon testOmpTaskSequential(
-      taskDataSeq);
+  kulaev_e_block_stl::TestSTLSequentialKulaevCannon testOmpTaskSequential(taskDataSeq);
   ASSERT_EQ(testOmpTaskSequential.validation(), true);
   testOmpTaskSequential.pre_processing();
   testOmpTaskSequential.run();
@@ -106,8 +97,7 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_2x2) {
   std::vector<double> par_res(n * m);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataPar =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataPar->inputs_count.emplace_back(in_A.size());
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -116,13 +106,11 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_2x2) {
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&m));
 
-  taskDataPar->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(par_res.data()));
+  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(par_res.data()));
   taskDataPar->outputs_count.emplace_back(par_res.size());
 
   // Create Task
-  kulaev_e_block_stl::TestTaskSTLParallelKulaevCannon testOmpTaskParallel(
-      taskDataPar);
+  kulaev_e_block_stl::TestTaskSTLParallelKulaevCannon testOmpTaskParallel(taskDataPar);
   ASSERT_EQ(testOmpTaskParallel.validation(), true);
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();
@@ -143,8 +131,7 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_5x5) {
   std::vector<double> seq_res(n * m);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataSeq->inputs_count.emplace_back(in_A.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -153,13 +140,11 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_5x5) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&m));
 
-  taskDataSeq->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(seq_res.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(seq_res.data()));
   taskDataSeq->outputs_count.emplace_back(seq_res.size());
 
   // Create Task
-  kulaev_e_block_stl::TestSTLSequentialKulaevCannon testOmpTaskSequential(
-      taskDataSeq);
+  kulaev_e_block_stl::TestSTLSequentialKulaevCannon testOmpTaskSequential(taskDataSeq);
   ASSERT_EQ(testOmpTaskSequential.validation(), true);
   testOmpTaskSequential.pre_processing();
   testOmpTaskSequential.run();
@@ -169,8 +154,7 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_5x5) {
   std::vector<double> par_res(n * m);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataPar =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataPar->inputs_count.emplace_back(in_A.size());
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -179,13 +163,11 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_5x5) {
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&m));
 
-  taskDataPar->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(par_res.data()));
+  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(par_res.data()));
   taskDataPar->outputs_count.emplace_back(par_res.size());
 
   // Create Task
-  kulaev_e_block_stl::TestTaskSTLParallelKulaevCannon testOmpTaskParallel(
-      taskDataPar);
+  kulaev_e_block_stl::TestTaskSTLParallelKulaevCannon testOmpTaskParallel(taskDataPar);
   ASSERT_EQ(testOmpTaskParallel.validation(), true);
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();
@@ -206,8 +188,7 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_0x0) {
   std::vector<double> seq_res(n * m);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataSeq->inputs_count.emplace_back(in_A.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -216,13 +197,11 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_0x0) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&m));
 
-  taskDataSeq->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(seq_res.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(seq_res.data()));
   taskDataSeq->outputs_count.emplace_back(seq_res.size());
 
   // Create Task
-  kulaev_e_block_stl::TestSTLSequentialKulaevCannon testOmpTaskSequential(
-      taskDataSeq);
+  kulaev_e_block_stl::TestSTLSequentialKulaevCannon testOmpTaskSequential(taskDataSeq);
   ASSERT_EQ(testOmpTaskSequential.validation(), true);
   testOmpTaskSequential.pre_processing();
   testOmpTaskSequential.run();
@@ -232,8 +211,7 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_0x0) {
   std::vector<double> par_res(n * m);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataPar =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataPar->inputs_count.emplace_back(in_A.size());
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -242,13 +220,11 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_0x0) {
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&m));
 
-  taskDataPar->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(par_res.data()));
+  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(par_res.data()));
   taskDataPar->outputs_count.emplace_back(par_res.size());
 
   // Create Task
-  kulaev_e_block_stl::TestTaskSTLParallelKulaevCannon testOmpTaskParallel(
-      taskDataPar);
+  kulaev_e_block_stl::TestTaskSTLParallelKulaevCannon testOmpTaskParallel(taskDataPar);
   ASSERT_EQ(testOmpTaskParallel.validation(), true);
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();
@@ -269,8 +245,7 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_100x100) {
   std::vector<double> seq_res(n * m);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataSeq =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataSeq = std::make_shared<ppc::core::TaskData>();
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataSeq->inputs_count.emplace_back(in_A.size());
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -279,13 +254,11 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_100x100) {
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataSeq->inputs.emplace_back(reinterpret_cast<uint8_t *>(&m));
 
-  taskDataSeq->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(seq_res.data()));
+  taskDataSeq->outputs.emplace_back(reinterpret_cast<uint8_t *>(seq_res.data()));
   taskDataSeq->outputs_count.emplace_back(seq_res.size());
 
   // Create Task
-  kulaev_e_block_stl::TestSTLSequentialKulaevCannon testOmpTaskSequential(
-      taskDataSeq);
+  kulaev_e_block_stl::TestSTLSequentialKulaevCannon testOmpTaskSequential(taskDataSeq);
   ASSERT_EQ(testOmpTaskSequential.validation(), true);
   testOmpTaskSequential.pre_processing();
   testOmpTaskSequential.run();
@@ -295,8 +268,7 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_100x100) {
   std::vector<double> par_res(n * m);
 
   // Create TaskData
-  std::shared_ptr<ppc::core::TaskData> taskDataPar =
-      std::make_shared<ppc::core::TaskData>();
+  std::shared_ptr<ppc::core::TaskData> taskDataPar = std::make_shared<ppc::core::TaskData>();
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_A.data()));
   taskDataPar->inputs_count.emplace_back(in_A.size());
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(in_B.data()));
@@ -305,13 +277,11 @@ TEST(Kulaev_e_block_cannons_stl, Multiplication_100x100) {
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&n));
   taskDataPar->inputs.emplace_back(reinterpret_cast<uint8_t *>(&m));
 
-  taskDataPar->outputs.emplace_back(
-      reinterpret_cast<uint8_t *>(par_res.data()));
+  taskDataPar->outputs.emplace_back(reinterpret_cast<uint8_t *>(par_res.data()));
   taskDataPar->outputs_count.emplace_back(par_res.size());
 
   // Create Task
-  kulaev_e_block_stl::TestTaskSTLParallelKulaevCannon testOmpTaskParallel(
-      taskDataPar);
+  kulaev_e_block_stl::TestTaskSTLParallelKulaevCannon testOmpTaskParallel(taskDataPar);
   ASSERT_EQ(testOmpTaskParallel.validation(), true);
   testOmpTaskParallel.pre_processing();
   testOmpTaskParallel.run();

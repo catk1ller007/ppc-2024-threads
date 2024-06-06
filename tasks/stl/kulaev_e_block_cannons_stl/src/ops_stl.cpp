@@ -8,9 +8,8 @@
 
 namespace kulaev_e_block_stl {
 
-std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A,
-                                               const std::vector<double>& B,
-                                               int n, int m) {
+std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A, const std::vector<double>& B, int n,
+                                               int m) {
   int blockSize = std::min(n, m);
 
   std::vector<double> C(n * m, 0.0);
@@ -41,9 +40,7 @@ std::vector<double> cannonMatrixMultiplication(const std::vector<double>& A,
   return C;
 }
 
-std::vector<double> multiplyMatrix(const std::vector<double>& A,
-                                   const std::vector<double>& B, int rows_A,
-                                   int col_B) {
+std::vector<double> multiplyMatrix(const std::vector<double>& A, const std::vector<double>& B, int rows_A, int col_B) {
   int col_A = rows_A;
   std::vector<double> C(rows_A * col_B, 0.0);
 
@@ -61,9 +58,8 @@ std::vector<double> multiplyMatrix(const std::vector<double>& A,
   return C;
 }
 
-void multiplyBlocks(const std::vector<double>& A, const std::vector<double>& B,
-                    std::vector<double>& C, int n, int m, int blockSize,
-                    int i_start, int j_start, int k_start) {
+void multiplyBlocks(const std::vector<double>& A, const std::vector<double>& B, std::vector<double>& C, int n, int m,
+                    int blockSize, int i_start, int j_start, int k_start) {
   int i_end = std::min(i_start + blockSize, n);
   int j_end = std::min(j_start + blockSize, m);
   int k_end = std::min(k_start + blockSize, m);
@@ -78,9 +74,8 @@ void multiplyBlocks(const std::vector<double>& A, const std::vector<double>& B,
   }
 }
 
-std::vector<double> cannonMatrixMultiplication_stl(const std::vector<double>& A,
-                                                   const std::vector<double>& B,
-                                                   int n, int m) {
+std::vector<double> cannonMatrixMultiplication_stl(const std::vector<double>& A, const std::vector<double>& B, int n,
+                                                   int m) {
   int blockSize = std::min(n, m);
   std::vector<double> C(n * m, 0.0);
 
@@ -170,8 +165,7 @@ bool TestSTLSequentialKulaevCannon::run() {
 
 bool TestSTLSequentialKulaevCannon::post_processing() {
   internal_order_test();
-  std::copy(result.begin(), result.end(),
-            reinterpret_cast<double*>(taskData->outputs[0]));
+  std::copy(result.begin(), result.end(), reinterpret_cast<double*>(taskData->outputs[0]));
   return true;
 }
 
@@ -212,8 +206,7 @@ bool TestTaskSTLParallelKulaevCannon::run() {
 
 bool TestTaskSTLParallelKulaevCannon::post_processing() {
   internal_order_test();
-  std::copy(result.begin(), result.end(),
-            reinterpret_cast<double*>(taskData->outputs[0]));
+  std::copy(result.begin(), result.end(), reinterpret_cast<double*>(taskData->outputs[0]));
   return true;
 }
 }  // namespace kulaev_e_block_stl
