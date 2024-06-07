@@ -56,22 +56,23 @@ void blockMultiply(const std::vector<double>& matrOne, const std::vector<double>
 std::vector<double> CannonMatrixMultStl(const std::vector<double>& matrOne, const std::vector<double>& matrTwo, 
                                         int size, int block) {
     if (!validateMatrix(matrOne.size(), matrTwo.size())) 
-        throw std::invalid_argument{"invalid matrix sizes"};
+        throw std::invalid_argument{"Invalid matrix sizes"};
 
-    if (block > size) 
+    if (block > size || block <= 0) 
         throw std::invalid_argument{"Wrong block size"};
 
     int numThreads = std::thread::hardware_concurrency();
-    if (numThreads == 0) numThreads = 2;
+    if (numThreads == 0) numThreads = 1;
 
     std::vector<double> matrRes(size * size, 0.0);
     std::vector<std::thread> threads;
     int rowsPerThread = size / numThreads;
+    int extraRows = size % numThreads;
 
     for (int t = 0; t < numThreads; ++t) {
-        int startRow = t * rowsPerThread;
-        int endRow = (t == numThreads - 1) ? size : startRow + rowsPerThread;
-        threads.emplace_back(blockMultiply, std::ref(matrOne), std::ref(matrTwo), std::ref(matrRes), size, block, startRow, endRow);
+        int startRow = t * rowsPerThread + std::min(t, extraRows);
+        int endRow = startRow + rowsPerThread + (t < extraRows ? 1 : 0);
+        threads.emplace_back(blockMultiply, std::cref(matrOne), std::cref(matrTwo), std::ref(matrRes), size, block, startRow, endRow);
     }
 
     for (auto& thread : threads) {
